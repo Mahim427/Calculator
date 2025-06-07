@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --page-bg: #525252;
+    --cal-bg: #252525;
+    --screen-bg: #101010;
+    --color: #e0e0e0;
+    --box-border: rgba(0,0,0,0.3);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--page-bg);
+    color: var(--color);
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin: 2rem 0 3rem;
+}
+
+button {
+    color: inherit;
+    background-color: var(--cal-bg);
+    text-align: center;
+    font-size: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    padding: .5rem;
+    margin: .3rem;
+    border-radius: 50%;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.calculator {
+    background-color: var(--cal-bg);
+    padding: .6rem;
+    border-radius: .5rem;
+    width: 18.5rem;
+}
+
+.screen {
+    font-size: 2.2rem;
+    background-color: var(--screen-bg);
+    margin-bottom: .5rem;
+    padding: .5rem;
+}
+
+
+/*Calculator Buttons*/
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.num {
+    border: 3px solid var(--page-bg);
+}
+
+.num:hover {
+    background-color: var(--page-bg);
+}
+
+.clear {
+    border: 3px solid #ff4f4f;
+}
+
+.clear:hover {
+    background-color: #ff4f4f;
+}
+
+.del,
+.rev-n {
+    border: 3px solid #888;
+}
+
+.del:hover,
+.rev-n:hover {
+    background-color: #888;
+}
+
+.op {
+    border: 3px solid #ffc700;
+}
+
+.op:hover {
+    background-color: #ffc700;
+}
+
+.equal {
+    border: 3px solid #00a200;
+    flex-grow: 2;
+    border-radius: 50px;
+}
+
+.equal:hover {
+    background-color: #00a200;
+}
