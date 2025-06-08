@@ -1,3 +1,6 @@
+const screen = document.querySelector(".screen");
+const inputBtn = document.querySelectorAll(".input-btn");
+
 const Calculator = {
     "+": (a, b) => (a + b).toFixed(2),
     "-": (a, b) => (a - b).toFixed(2),
@@ -14,8 +17,12 @@ function operate(equation_str) {
     console.log(Calculator[op](a, b));
 }
 
-// operate("2 + 4")
-// operate("2.4 + 4.8")
-// operate("2.4 - 4.8")
-// operate("2.4 * 4.8")
-// operate("2.4 / 4.8")
+
+// Listen for each (number and operator) click
+inputBtn.forEach(btn => {
+    btn.addEventListener("click", () => {
+        screen.textContent += btn.textContent;
+        screen.scrollLeft = screen.scrollWidth;
+    });
+})
+
