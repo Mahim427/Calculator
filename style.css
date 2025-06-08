@@ -53,6 +53,10 @@ button:hover {
     background-color: var(--screen-bg);
     margin-bottom: .5rem;
     padding: .5rem;
+    height: 3.3rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+    text-align: end;
 }
 
 
