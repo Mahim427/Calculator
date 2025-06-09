@@ -1,5 +1,7 @@
 # Calculator
 
+🔗 **Live Demo**: [Try it now](https://mahim427.github.io/Calculator/)
+
 ## Features
 
 🧮 **Full Calculator Functionality**
