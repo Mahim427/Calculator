@@ -1,33 +1,57 @@
+const nums = document.querySelectorAll(".num");
+const ops = document.querySelectorAll(".op");
 const screen = document.querySelector(".screen");
-const inputBtn = document.querySelectorAll(".input-btn");
 const clearBtn = document.querySelector(".clear");
 const delBtn = document.querySelector(".del");
 const revBtn = document.querySelector(".rev-n");
 
+
 const Calculator = {
-    "+": (a, b) => (a + b).toFixed(2),
-    "-": (a, b) => (a - b).toFixed(2),
-    "*": (a, b) => (a * b).toFixed(2),
-    "/": (a, b) => (a / b).toFixed(2),
+    "+": (a, b) => (a + b),
+    "-": (a, b) => (a - b),
+    "*": (a, b) => (a * b),
+    "/": (a, b) => (a / b),
 }
 
 function operate(equation_str) {
     const equation = equation_str.split(" ");
-    const a = parseFloat(equation[0]);
+    const a = equation[0].includes(".") ? parseFloat(equation[0]) : parseInt(equation[0]);
     const op = equation[1];
-    const b = parseFloat(equation[2]);
+    const b = equation[2].includes(".") ? parseFloat(equation[2]) : parseInt(equation[2]);
 
-    console.log(Calculator[op](a, b));
+    let ans = Calculator[op](a, b);
+    if (`${ans}`.includes("."))
+        return ans.toFixed(2);
+
+    return ans;
 }
 
+// Check if last input is operator
+const endsWithOperator = () => screen.textContent.slice(-1) === " ";
+// Delete operator from equation
+const deleteOperator = () => screen.textContent = screen.textContent.slice(0, -3);
 
-// Listen for each (number and operator) click
-inputBtn.forEach(btn => {
-    btn.addEventListener("click", () => {
-        screen.textContent += btn.textContent;
-        screen.scrollLeft = screen.scrollWidth;
+
+// Listen for each number click
+nums.forEach(num => {
+    num.addEventListener("click", () => {
+        screen.textContent += num.textContent;
     });
-})
+});
+
+
+// Listen for each operator click
+ops.forEach(op => {
+    op.addEventListener("click", () => {
+        // Check and Delete last operator
+        if (endsWithOperator()) deleteOperator();
+
+        if (screen.textContent.includes(" "))
+            screen.textContent = operate(screen.textContent);
+
+        screen.textContent += ` ${op.textContent} `;
+    });
+});
 
 
 // Clear screen
@@ -40,14 +64,21 @@ clearBtn.addEventListener("click", () => {
 delBtn.addEventListener("click", () => {
     if (screen.textContent !== "") {
         const text = screen.textContent;
-        screen.textContent = text.slice(0, text.length - 1);
+
+        // Check for operator
+        if (endsWithOperator()) {
+            deleteOperator();
+        } else {
+            screen.textContent = text.slice(0, text.length - 1);
+        }
     }
 })
 
 
 // Negate the number on the screen 1 <-> -1
 revBtn.addEventListener("click", () => {
-    if (screen.textContent !== "") {
+    // Don't negate the operation -> 5 + 3 -> not negatable
+    if (screen.textContent !== "" && !screen.textContent.includes(" ")) {
         screen.textContent = (-1 * screen.textContent).toString();
     }
 })
