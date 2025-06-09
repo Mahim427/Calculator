@@ -77,7 +77,8 @@ delBtn.addEventListener("click", () => {
 
 // Negate the number on the screen 1 <-> -1
 revBtn.addEventListener("click", () => {
-    if (screen.textContent !== "") {
+    // Don't negate the operation -> 5 + 3 -> not negatable
+    if (screen.textContent !== "" && !screen.textContent.includes(" ")) {
         screen.textContent = (-1 * screen.textContent).toString();
     }
 })
