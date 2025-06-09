@@ -4,6 +4,7 @@ const screen = document.querySelector(".screen");
 const clearBtn = document.querySelector(".clear");
 const delBtn = document.querySelector(".del");
 const revBtn = document.querySelector(".rev-n");
+const equalBtn = document.querySelector(".equal");
 
 
 const Calculator = {
@@ -81,4 +82,9 @@ revBtn.addEventListener("click", () => {
     if (screen.textContent !== "" && !screen.textContent.includes(" ")) {
         screen.textContent = (-1 * screen.textContent).toString();
     }
+})
+
+// Calculate the equation
+equalBtn.addEventListener("click", () => {
+    screen.textContent = operate(screen.textContent);
 })
