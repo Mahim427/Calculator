@@ -5,19 +5,23 @@ const delBtn = document.querySelector(".del");
 const revBtn = document.querySelector(".rev-n");
 
 const Calculator = {
-    "+": (a, b) => (a + b).toFixed(2),
-    "-": (a, b) => (a - b).toFixed(2),
-    "*": (a, b) => (a * b).toFixed(2),
-    "/": (a, b) => (a / b).toFixed(2),
+    "+": (a, b) => (a + b),
+    "-": (a, b) => (a - b),
+    "*": (a, b) => (a * b),
+    "/": (a, b) => (a / b),
 }
 
 function operate(equation_str) {
     const equation = equation_str.split(" ");
-    const a = parseFloat(equation[0]);
+    const a = equation[0].includes(".") ? parseFloat(equation[0]) : parseInt(equation[0]);
     const op = equation[1];
-    const b = parseFloat(equation[2]);
+    const b = equation[2].includes(".") ? parseFloat(equation[2]) : parseInt(equation[2]);
 
-    console.log(Calculator[op](a, b));
+    let ans = Calculator[op](a, b);
+    if (`${ans}`.includes("."))
+        return ans.toFixed(2);
+
+    return ans;
 }
 
 
